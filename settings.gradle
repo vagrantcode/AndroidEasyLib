@@ -1,0 +1,3 @@
+include ':EasyLib'
+include ':app'
+rootProject.name = "AndroidEasyLib"
