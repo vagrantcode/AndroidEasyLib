@@ -4,8 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.mw.easylib.Net.Udp.UdpClient;
-import com.mw.easylib.Net.Udp.UdpUtil;
 
 public class MainActivity extends AppCompatActivity {
 

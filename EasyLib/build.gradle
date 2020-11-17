@@ -14,6 +14,11 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
 
     buildTypes {
         release {
@@ -29,5 +34,5 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-
+    api 'org.greenrobot:eventbus:3.1.1'
 }
