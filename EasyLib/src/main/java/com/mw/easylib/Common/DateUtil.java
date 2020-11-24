@@ -5,8 +5,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DateUtil {
+    private static String defaultFormat = DateStringFormat.DateTimeHorizontal.value();
+
     public static Date convertToDate(String strDate) throws Exception {
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat df = new SimpleDateFormat(defaultFormat);
         return df.parse(strDate);
     }
 
@@ -16,7 +18,7 @@ public class DateUtil {
     }
 
     public static String convertToString(Date date) {
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat df = new SimpleDateFormat(defaultFormat);
         return df.format(date);
     }
 
@@ -24,10 +26,15 @@ public class DateUtil {
         DateFormat df = new SimpleDateFormat(format);
         return df.format(date);
     }
-    public static long difTime(Date startDate,Date endDate) throws Exception{
-        long d1=startDate.getTime();
-        long d2=endDate.getTime();
-        return d1-d2;
+
+    public static long difTime(Date startDate, Date endDate) throws Exception {
+        long d1 = startDate.getTime();
+        long d2 = endDate.getTime();
+        return d1 - d2;
+    }
+
+    public static setDefaultFormat(String formatString) {
+        defaultFormat = formatString;
     }
 
     public enum DateStringFormat {
