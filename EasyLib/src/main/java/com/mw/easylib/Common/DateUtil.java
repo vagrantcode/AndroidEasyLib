@@ -33,7 +33,7 @@ public class DateUtil {
         return d1 - d2;
     }
 
-    public static setDefaultFormat(String formatString) {
+    public static void setDefaultFormat(String formatString) {
         defaultFormat = formatString;
     }
 
