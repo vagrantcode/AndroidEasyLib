@@ -12,7 +12,7 @@ import java.net.MulticastSocket;
 import java.net.UnknownHostException;
 
 public class UdpGroup extends UdpUtil implements UdpSend.OnDataSendListener, UdpReceive.OnDataReceivedListener {
-    private String Tag="udpGroup";
+    private String Tag = "udpGroup";
     MulticastSocket socket;
     WifiManager wifiManager;
     WifiManager.MulticastLock multicastLock;
@@ -22,6 +22,9 @@ public class UdpGroup extends UdpUtil implements UdpSend.OnDataSendListener, Udp
         try {
             socket = new MulticastSocket(clientPort);
         } catch (IOException e) {
+            if (getiUdpUtil() != null) {
+                getiUdpUtil().onCreateFailed();
+            }
             e.printStackTrace();
         }
     }
@@ -58,12 +61,12 @@ public class UdpGroup extends UdpUtil implements UdpSend.OnDataSendListener, Udp
 
     @Override
     public void send(String targetIp, int targetPort, String msg) {
-        Log.i(Tag,"udp组播只支持组内数据发送请使用send(String msg)直接发送组内数据");
+        Log.i(Tag, "udp组播只支持组内数据发送请使用send(String msg)直接发送组内数据");
     }
 
     @Override
     public void send(String targetIp, int targetPort, byte[] msg) {
-        Log.i(Tag,"udp组播只支持组内数据发送请使用send(byte[] msg)直接发送组内数据");
+        Log.i(Tag, "udp组播只支持组内数据发送请使用send(byte[] msg)直接发送组内数据");
     }
 
     @Override
@@ -94,6 +97,7 @@ public class UdpGroup extends UdpUtil implements UdpSend.OnDataSendListener, Udp
         curContext = context;
 
     }
+
     @Override
     public void onDataSent() {
 

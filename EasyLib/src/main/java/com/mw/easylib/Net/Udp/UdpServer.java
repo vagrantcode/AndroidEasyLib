@@ -19,6 +19,9 @@ public class UdpServer extends UdpUtil implements UdpSend.OnDataSendListener {
         try {
             server = new DatagramSocket(this.port);
         } catch (SocketException e) {
+            if(getiUdpUtil()!=null){
+                getiUdpUtil().onCreateFailed();
+            }
             e.printStackTrace();
         }
     }
