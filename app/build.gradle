@@ -15,7 +15,7 @@ android {
     }
     repositories {
         flatDir {
-            dirs '../EasyLib/libs/', 'libs'
+            dirs '../EasyLib/libs/', 'libs','../GreenDao/libs'
         }
     }
     buildTypes {
