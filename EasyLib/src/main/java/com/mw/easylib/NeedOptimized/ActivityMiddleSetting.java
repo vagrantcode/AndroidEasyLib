@@ -27,6 +27,15 @@ import rx.schedulers.Schedulers;
 
 public class ActivityMiddleSetting extends Activity {
     private String Tag = "ActivityMiddleSetting";
+    private boolean forbidBack = false;
+
+    public boolean isForbidBack() {
+        return forbidBack;
+    }
+
+    public void setForbidBack(boolean forbidBack) {
+        this.forbidBack = forbidBack;
+    }
 
     public void setOnBack(OnBack onBack) {
         this.onBack = onBack;
@@ -109,7 +118,8 @@ public class ActivityMiddleSetting extends Activity {
     /*
      * 设置按两次返回键退出---记录第一次按下的时间*/
     private long firstTime = 0;
-private OnBack onBack;
+    private OnBack onBack;
+
     /*
      * 判断是否连续的两次返回，如果是则退出程序*/
     @Override
@@ -117,21 +127,23 @@ private OnBack onBack;
         long secondTime = System.currentTimeMillis();
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (secondTime - firstTime < 2000) {
-                System.exit(0);
-            } else {
-                //Toast.makeText(getApplicationContext(), "再按一次返回键退出", Toast.LENGTH_SHORT).show();
-                if(onBack!=null){
-                    onBack.onFirstBack();
+                if (!isForbidBack()) {
+                    System.exit(0);
                 }
-                firstTime = System.currentTimeMillis();
-            }
 
+            } else {
+                if (!isForbidBack()) {
+                    Toast.makeText(getApplicationContext(), "再按一次返回键退出", Toast.LENGTH_SHORT).show();
+                    firstTime = System.currentTimeMillis();
+                }
+            }
             return true;
         }
 
         return super.onKeyDown(keyCode, event);
     }
-    public interface OnBack{
+
+    public interface OnBack {
         void onFirstBack();
     }
 
